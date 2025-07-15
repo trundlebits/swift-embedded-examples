@@ -29,18 +29,29 @@ struct Main {
       cyw43_arch_gpio_put(led, false)
       sleep_ms(250)
     }
+
+    let pause = {
+      sleep_ms(500)
+    }
+
     while true {
       dot()
       dot()
       dot()
 
+      pause()
       dash()
       dash()
       dash()
 
+      pause()
+
       dot()
       dot()
       dot()
+
+      pause()
+      pause()
     }
   }
 }
