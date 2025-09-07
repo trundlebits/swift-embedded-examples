@@ -37,6 +37,8 @@ runs:
       shell: bash
       run: |
         ls -laR ~/.local/share/swiftly
+        ls -la /
+        ls -la /root
 
     - name: Install `apt` Dependencies
       if: steps.cache-swift.outputs.cache-hit != 'true'
@@ -71,6 +73,8 @@ runs:
       shell: bash
       run: |
         ls -laR ~/.local/share/swiftly
+        ls -la /
+        ls -la /root
 
     - name: "Save: Swift"
       if: steps.cache-swift.outputs.cache-hit != 'true'
