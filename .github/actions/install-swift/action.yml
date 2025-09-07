@@ -32,6 +32,12 @@ runs:
         path: "~/.local/share/swiftly"
         key: swift-${{ hashFiles('**/.swift-version') }}
 
+    - name: List output of restored cache directory
+      if: steps.cache-swift.outputs.cache-hit == 'true'
+      shell: bash
+      run: |
+        ls -laR ~/.local/share/swiftly
+
     - name: Install `apt` Dependencies
       if: steps.cache-swift.outputs.cache-hit != 'true'
       shell: bash
@@ -59,6 +65,12 @@ runs:
       if: steps.cache-swift.outputs.cache-hit != 'true'
       shell: bash
       run: swiftly install --post-install-file ./out.sh
+
+    - name: List output of installed swiftly directory
+      if: steps.cache-swift.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        ls -laR ~/.local/share/swiftly
 
     - name: "Save: Swift"
       if: steps.cache-swift.outputs.cache-hit != 'true'
