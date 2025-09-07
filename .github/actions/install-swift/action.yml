@@ -88,6 +88,11 @@ runs:
         path: "~/.local/share/swiftly"
         key: swift-${{ hashFiles('**/.swift-version') }}
 
+    - name: "Run 'swiftly use --print-location'"
+      shell: bash
+      run: |
+        swiftly use --print-location
+
     - name: Print Swift Version
       shell: bash
       run: swift --version
