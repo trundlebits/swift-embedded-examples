@@ -75,6 +75,15 @@ runs:
           --quiet-shell-followup \
           --no-modify-profile
 
+    - name: "Dump contents of 'out.sh'"
+      if: steps.cache-swift.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        if [ -f out.sh ]; then
+           echo "==> Dumping contents of 'out.sh'"
+           cat out.sh
+        fi
+
     - name: Install Swift
       if: steps.cache-swift.outputs.cache-hit != 'true'
       shell: bash
@@ -98,7 +107,6 @@ runs:
         ls -la /
         echo "=== Contents of /root ==="
         ls -la /root
-
 
     - name: "Save: Swift"
       if: steps.cache-swift.outputs.cache-hit != 'true'
