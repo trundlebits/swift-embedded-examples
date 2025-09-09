@@ -18,6 +18,10 @@ runs:
         echo "SWIFTLY_HOME_DIR=$SWIFTLY_HOME_DIR" >> $GITHUB_ENV
         echo "SWIFTLY_HOME_DIR=$SWIFTLY_HOME_DIR" >> $HOME/.bashrc
 
+        export SWIFTLY_TOOLCHAINS_DIR="$HOME/.local/share/swiftly/toolchains"
+        echo "SWIFTLY_TOOLCHAINS_DIR=$SWIFTLY_TOOLCHAINS_DIR" >> $GITHUB_ENV
+        echo "SWIFTLY_TOOLCHAINS_DIR=$SWIFTLY_TOOLCHAINS_DIR" >> $HOME/.bashrc
+
         export SWIFTLY_BIN_DIR="$HOME/.local/share/swiftly/bin"
         echo "SWIFTLY_BIN_DIR=$SWIFTLY_BIN_DIR" >> $GITHUB_ENV
         echo "SWIFTLY_BIN_DIR=$SWIFTLY_BIN_DIR" >> $HOME/.bashrc
@@ -41,8 +45,11 @@ runs:
       if: steps.cache-swift.outputs.cache-hit == 'true'
       shell: bash
       run: |
+        echo "=== Contents of ~/.local/share/swiftly ==="
         ls -laR ~/.local/share/swiftly
+        echo "=== Contents of / ==="
         ls -la /
+        echo "=== Contents of /root ==="
         ls -la /root
 
     - name: Install `apt` Dependencies
@@ -73,13 +80,25 @@ runs:
       shell: bash
       run: swiftly install --post-install-file ./out.sh
 
+#    - name: "Create symlink to installed 'swiftly'"
+#      if: steps.cache-swift.outputs.cache-hit != 'true'
+#      shell: bash
+#      run: |
+#        SUDO=$(if [[ $EUID -ne 0 ]]; then echo sudo; fi)
+#        $SUDO mkdir -p /root/.local/share
+#        ln -s $SWIFTLY_HOME_DIR /root/.local/share/swiftly
+
     - name: "List output of installed swiftly directory"
       if: steps.cache-swift.outputs.cache-hit != 'true'
       shell: bash
       run: |
+        echo "=== Contents of ~/.local/share/swiftly ==="
         ls -laR ~/.local/share/swiftly
+        echo "=== Contents of / ==="
         ls -la /
+        echo "=== Contents of /root ==="
         ls -la /root
+
 
     - name: "Save: Swift"
       if: steps.cache-swift.outputs.cache-hit != 'true'
