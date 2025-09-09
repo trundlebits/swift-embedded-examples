@@ -18,9 +18,9 @@ runs:
         echo "SWIFTLY_HOME_DIR=$SWIFTLY_HOME_DIR" >> $GITHUB_ENV
         echo "SWIFTLY_HOME_DIR=$SWIFTLY_HOME_DIR" >> $HOME/.bashrc
 
-        export SWIFTLY_TOOLCHAINS_DIR="$HOME/.local/share/swiftly/toolchains"
-        echo "SWIFTLY_TOOLCHAINS_DIR=$SWIFTLY_TOOLCHAINS_DIR" >> $GITHUB_ENV
-        echo "SWIFTLY_TOOLCHAINS_DIR=$SWIFTLY_TOOLCHAINS_DIR" >> $HOME/.bashrc
+#        export SWIFTLY_TOOLCHAINS_DIR="$HOME/.local/share/swiftly/toolchains"
+#        echo "SWIFTLY_TOOLCHAINS_DIR=$SWIFTLY_TOOLCHAINS_DIR" >> $GITHUB_ENV
+#        echo "SWIFTLY_TOOLCHAINS_DIR=$SWIFTLY_TOOLCHAINS_DIR" >> $HOME/.bashrc
 
         export SWIFTLY_BIN_DIR="$HOME/.local/share/swiftly/bin"
         echo "SWIFTLY_BIN_DIR=$SWIFTLY_BIN_DIR" >> $GITHUB_ENV
